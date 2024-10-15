@@ -1,0 +1,41 @@
+List of all Measure Tables used in this project:
+
+1) % of all orders = DIVIDE([Total orders],[All orders])
+2) % of all returns = DIVIDE([Total returns],[All returns])
+3) 10 days rolling revenue = CALCULATE([Target revenue], DATESINPERIOD('Calendar Lookup'[Date], MAX('Calendar Lookup'[Date]), -10,DAY))
+4) 90 days rolling profit = CALCULATE([Total profit], DATESINPERIOD('Calendar Lookup'[Date], MAX('Calendar Lookup'[Date]), -90,DAY))
+5) Adjusted Price = [Average retail price] * (1 + 'Adjusted Profit (%)'[Adjusted Profit (%) Value])
+6) Adjusted profit = [Adjusted revenue] - [Total cost]
+7) Adjusted revenue = sumx('Sales Data', 'Sales Data'[OrderQuantity] * [Adjusted Price])
+8) All orders = CALCULATE([Total orders], ALL('Sales Data'))
+9) All returns = CALCULATE([Total returns], ALL('Returns Data'))
+10) Average retail price = AVERAGE('Product Lookup'[ProductPrice])
+11) Average revenue per customers = DIVIDE([Total revenue],[Total customers])
+12) Bike return rate = CALCULATE([Return rate], 'Product Categories Lookup'[CategoryName] = "Bikes")
+13) Bike returns = calculate([Total returns], 'Product Categories Lookup'[CategoryName] = "Bikes")
+14) Bike sales = CALCULATE([Quantity sold], 'Product Categories Lookup'[CategoryName] = "Bikes")
+15) Bulk orders = CALCULATE([Total orders], 'Sales Data'[OrderQuantity] > 1)
+16) High ticket orders = CALCULATE([Total orders], FILTER('Product Lookup', 'Product Lookup'[ProductPrice] > [Overall average price]))
+17) Order target = [Previous month orders] * 1.1
+18) Order Target Gap = [Total orders] - [Order target]
+19) Overall average price = CALCULATE([Average retail price], ALL('Product Lookup'))
+20) Previous month orders = CALCULATE([Total orders], DATEADD('Calendar Lookup'[Date], -1, MONTH))
+21) Previous month profit = CALCULATE([Total profit], DATEADD('Calendar Lookup'[Date], -1, MONTH))
+22) Previous month returns = CALCULATE([Total returns], DATEADD('Calendar Lookup'[Date], -1, MONTH))
+23) Previous month revenue = CALCULATE([Total revenue], DATEADD('Calendar Lookup'[Date], -1,MONTH))
+24) Profit target = [Previous month profit] * 1.1
+25) Profit Target Gap = [Total profit] - [Profit target]
+26) Quantity returned = SUM('Returns Data'[ReturnQuantity])
+27) Quantity sold = SUM('Sales Data'[OrderQuantity])
+28) Return rate = DIVIDE([Quantity returned],[Quantity sold], "No sales")
+29) Revenue Target Gap = [Total revenue] - [Target revenue]
+30) Target revenue = [Previous month revenue] * 1.1
+31) Total cost = SUMX('Sales Data', 'Sales Data'[OrderQuantity] * RELATED('Product Lookup'[ProductCost]))
+32) Total customers = DISTINCTCOUNT('Sales Data'[CustomerKey])
+33) Total orders = DISTINCTCOUNT('Sales Data'[OrderNumber])
+34) Total profit = [Total revenue] - [Total cost]
+35) Total returns = COUNT('Returns Data'[ReturnQuantity])
+36) Total revenue = sumx('Sales Data', 'Sales Data'[OrderQuantity] * RELATED('Product Lookup'[ProductPrice]))
+37) Weekend orders = CALCULATE([Total orders], 'Calendar Lookup'[Weekend] = "Weekend")
+38) YTD Revenue = CALCULATE([Total revenue], DATESYTD('Calendar Lookup'[Date]))
+   
